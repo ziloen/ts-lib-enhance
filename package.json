@@ -1,12 +1,12 @@
 {
-  "name": "typescript-lib-enhancer",
+  "name": "ts-lib-enhance",
   "version": "1.0.13",
   "description": "Enhance typescript default lib.*.d.ts",
   "keywords": [
     "typescript",
     "types"
   ],
-  "homepage": "https://github.com/ziloen/typescript-lib-enhancer",
+  "homepage": "https://github.com/ziloen/ts-lib-enhance",
   "author": "ziloen",
   "main": "shim.d.ts",
   "types": "shim.d.ts",
