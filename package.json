@@ -17,7 +17,9 @@
     "shim.d.ts",
     "utils.d.ts",
     "highlight.d.ts",
-    "view-transition.d.ts"
+    "view-transition.d.ts",
+    "InputEventInputType.d.ts",
+    "KeyboardEventKey.d.ts"
   ],
   "scripts": {
     "dev": "tsc --noEmit --watch",
