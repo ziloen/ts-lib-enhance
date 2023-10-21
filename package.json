@@ -29,14 +29,14 @@
   },
   "dependencies": {
     "bumpp": "^9.2.0",
-    "type-fest": "^4.4.0",
+    "type-fest": "^4.5.0",
     "typed-query-selector": "^2.11.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@ziloen/eslint-config-format": "^0.0.109",
-    "@ziloen/eslint-config-typescript": "^0.0.109",
-    "eslint": "^8.51.0"
+    "@ziloen/eslint-config-format": "^0.0.110",
+    "@ziloen/eslint-config-typescript": "^0.0.110",
+    "eslint": "^8.52.0"
   },
   "eslintConfig": {
     "root": true,
