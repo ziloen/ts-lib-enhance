@@ -1,6 +1,7 @@
 {
   "name": "ts-lib-enhance",
   "version": "1.0.14",
+  "type": "module",
   "description": "Enhance typescript default lib.*.d.ts",
   "keywords": [
     "typescript",
@@ -29,26 +30,12 @@
   },
   "dependencies": {
     "bumpp": "^9.2.0",
-    "type-fest": "^4.5.0",
+    "type-fest": "^4.7.1",
     "typed-query-selector": "^2.11.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@ziloen/eslint-config-format": "^0.0.110",
-    "@ziloen/eslint-config-typescript": "^0.0.110",
-    "eslint": "^8.52.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@ziloen/eslint-config-typescript",
-      "@ziloen/eslint-config-format"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "prefer-object-has-own": "off"
-    }
+    "@ziloen/eslint-config": "^0.1.5",
+    "eslint": "^8.53.0"
   }
 }

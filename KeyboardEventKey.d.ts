@@ -445,7 +445,7 @@ type SpecialValueKey = 'Unidentified'
  * The types are the standard key values that can be in event.key (KeyboardEvent.key),
  *
  * ```ts
- * const actionKey : KeyboardEventKey = "ArrowUp" //<- IntelliSense
+ * const actionKey: KeyboardEventKey = "ArrowUp" //<- IntelliSense
  * ```
  */
 export declare type KeyboardEventKey = LiteralUnion<
