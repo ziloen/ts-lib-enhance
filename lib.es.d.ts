@@ -1,4 +1,4 @@
-import { IfAny, IfUnknown, Split } from 'type-fest'
+import type { IfAny, IfUnknown, Split } from 'type-fest'
 import type {
   AnyObject,
   ExtractAndRequiredByKey,
@@ -171,10 +171,10 @@ declare global {
         T,
         unknown[],
         T extends readonly any[]
-        ? readonly any[]
-        : T extends any[]
-        ? any[]
-        : never
+          ? readonly any[]
+          : T extends any[]
+            ? any[]
+            : never
       >
     >
   }

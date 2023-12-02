@@ -1,3 +1,4 @@
+/** @internal */
 type _ = any
 
 /**
@@ -12,18 +13,18 @@ type _ = any
  */
 export type ExtractByKey<T, K extends keyof any> =
   T extends infer R
-  ? K extends keyof R
-  ? R
-  : never
-  : never
+    ? K extends keyof R
+      ? R
+      : never
+    : never
 
 /** @internal */
 export type ExtractAndRequiredByKey<T, K extends keyof any> =
   T extends infer R
-  ? K extends keyof R
-  ? RequiredByKey<R, K>
-  : never
-  : never
+    ? K extends keyof R
+      ? RequiredByKey<R, K>
+      : never
+    : never
 
 
 /** @internal */
@@ -64,10 +65,10 @@ export type IterableType<T extends Iterable<any>> = T extends Iterable<infer R> 
 /** @internal is T a union type */
 export type IsUnion<T, U = T> =
   T extends U
-  ? [U] extends [T]
-  ? false
-  : true
-  : never
+    ? [U] extends [T]
+        ? false
+        : true
+    : never
 
 
 /** @internal */
@@ -77,8 +78,8 @@ export type Split<
   Result extends string[] = []
 > =
   Str extends `${infer First}${Separator}${infer Rest}`
-  ? Split<Rest, Separator, [...Result, First]>
-  : [...Result, ...Str extends '' ? [] : [Str]]
+    ? Split<Rest, Separator, [...Result, First]>
+    : [...Result, ...Str extends '' ? [] : [Str]]
 
 /** @internal */
 export type UnionToTuple<U, L = UnionLast<U>> = [U] extends [never] ? [] : [L, ...UnionToTuple<Exclude<U, L>>]
@@ -107,10 +108,10 @@ type IsNull<T> = [T] extends [null] ? true : false
 /** @internal */
 type IsUnknown<T> = (
   unknown extends T // `T` can be `unknown` or `any`
-  ? IsNull<T> extends false // `any` can be `null`, but `unknown` can't be
-  ? true
-  : false
-  : false
+    ? IsNull<T> extends false // `any` can be `null`, but `unknown` can't be
+      ? true
+      : false
+    : false
 )
 
 /** @internal */
