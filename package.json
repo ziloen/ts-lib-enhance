@@ -30,13 +30,13 @@
     "test": "tsc --noEmit"
   },
   "dependencies": {
-    "bumpp": "^9.2.0",
-    "type-fest": "^4.8.2",
+    "bumpp": "^9.4.0",
+    "type-fest": "^4.11.1",
     "typed-query-selector": "^2.11.0",
-    "typescript": "^5.3.2"
+    "typescript": "^5.4.2"
   },
   "devDependencies": {
-    "@ziloen/eslint-config": "^0.1.11",
-    "eslint": "^8.55.0"
+    "@ziloen/eslint-config": "^0.1.20",
+    "eslint": "^8.57.0"
   }
 }
