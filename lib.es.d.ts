@@ -3,6 +3,7 @@ import type {
   AnyObject,
   ExtractAndRequiredByKey,
   ExtractByKey,
+  IfAnyOrUnknown,
   IterableType,
   KeyofUnion,
   ToString,
@@ -186,18 +187,10 @@ declare global {
 
   interface ArrayConstructor {
     // @ts-expect-error FIXME: predicate type error but works
-    isArray<T>(arg: T): arg is IfAny<
-      T,
-      unknown[],
-      IfUnknown<
-        T,
-        unknown[],
-        T extends readonly any[]
-          ? readonly any[]
-          : T extends any[]
-            ? any[]
-            : never
-      >
-    >
+    isArray<T>(arg: T): arg is unknown extends T
+      ? unknown[]
+      : T extends readonly unknown[]
+        ? T
+        : never
   }
 }
