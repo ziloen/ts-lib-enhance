@@ -1,12 +1,10 @@
-import type { IfAny, IfUnknown, Split } from 'type-fest'
+import type { KeysOfUnion, Split } from 'type-fest'
 import type {
   AnyObject,
   ExtractAndRequiredByKey,
   ExtractByKey,
-  IfAnyOrUnknown,
   IterableType,
-  KeyofUnion,
-  ToString,
+  ToString
 } from './utils'
 
 type ToStringTag =
@@ -31,7 +29,7 @@ declare global {
      * @param o An object.
      * @param v A property name.
      */
-    hasOwn<T extends Record<keyof any, any>, K extends keyof globalThis.Object & KeyofUnion<T>>(
+    hasOwn<T extends Record<keyof any, any>, K extends keyof globalThis.Object & KeysOfUnion<T>>(
       o: T,
       v: K,
     ): o is ExtractAndRequiredByKey<T, K>
@@ -53,7 +51,7 @@ declare global {
       o: T,
       v: K
       // @ts-expect-error FIXME: predicate type error but works
-    ): o is K extends KeyofUnion<T> ? ExtractAndRequiredByKey<T, K> : T & { [P in K]: unknown }
+    ): o is K extends KeysOfUnion<T> ? ExtractAndRequiredByKey<T, K> : T & { [P in K]: unknown }
 
 
     /**
@@ -142,7 +140,7 @@ declare global {
      * @param target Object that contains the property on itself or in its prototype chain.
      * @param propertyKey Name of the property.
      */
-    function has<T extends AnyObject, K extends KeyofUnion<T>>(target: T, propertyKey: K): target is ExtractByKey<T, K>
+    function has<T extends AnyObject, K extends KeysOfUnion<T>>(target: T, propertyKey: K): target is ExtractByKey<T, K>
 
 
 
@@ -187,7 +185,7 @@ declare global {
 
   interface ArrayConstructor {
     // @ts-expect-error FIXME: predicate type error but works
-    isArray<T>(arg: T): arg is unknown extends T
+    isArray<T>(arg: T): arg is unknown extends T // T is `unknown` or `any`
       ? unknown[]
       : T extends readonly unknown[]
         ? T

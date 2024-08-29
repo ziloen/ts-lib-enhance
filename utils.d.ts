@@ -40,9 +40,6 @@ export type Stringable = string | number | bigint | boolean | null | undefined
 export type ToString<T> = T extends Stringable ? `${T}` : never
 
 /** @internal */
-export type KeyofUnion<T> = T extends infer R ? keyof R : never
-
-/** @internal */
 export type Fn<Args extends any[] = any[], Return = any> = (...args: Args) => Return
 
 /** @internal */
@@ -53,10 +50,6 @@ export type UnionToIntersection<U> = (U extends any ? Fn<[U]> : never) extends F
 
 /** @internal */
 export type UnionLast<T> = UnionToIntersection<T extends unknown ? Fn<[T]> : never> extends Fn<[infer A]> ? A : never
-
-/** @internal */
-export type ValueOf<T extends AnyObject> = T[keyof T]
-
 
 /** @internal */
 export type IterableType<T extends Iterable<any>> = T extends Iterable<infer R> ? R : never
@@ -87,11 +80,8 @@ export type UnionToTuple<U, L = UnionLast<U>> = [U] extends [never] ? [] : [L, .
 
 // type-challenges utils 
 /** @internal */
-export type Equal<X, Y> =
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-  (<T>() => T extends X ? 1 : 2) extends
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-  (<T>() => T extends Y ? 1 : 2) ? true : false
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
 
 /** @internal */
 export type Expect<T extends true> = T
