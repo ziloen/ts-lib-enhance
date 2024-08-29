@@ -30,6 +30,24 @@ declare global {
      * @param o An object.
      * @param v A property name.
      */
+    hasOwn<T extends Record<keyof any, any>, K extends keyof globalThis.Object & KeyofUnion<T>>(
+      o: T,
+      v: K,
+    ): o is ExtractAndRequiredByKey<T, K>
+    /**
+     * Determines whether an object has a property with the specified name.
+     * @param o An object.
+     * @param v A property name.
+     */
+    hasOwn(
+      o: Record<keyof any, any>,
+      v: keyof globalThis.Object,
+    ): boolean
+    /**
+     * Determines whether an object has a property with the specified name.
+     * @param o An object.
+     * @param v A property name.
+     */
     hasOwn<T extends Record<keyof any, any>, K extends keyof any>(
       o: T,
       v: K
@@ -67,7 +85,11 @@ declare global {
      * Returns an object created by key-value entries for properties and methods
      * @param entries An iterable object that contains key-value entries for properties and methods.
      */
-    fromEntries<K extends PropertyKey, I extends Iterable<readonly [K, any]>, T extends IterableType<I> = IterableType<I>>(entries: I): { [Key in T[0]]: IterableType<I>[1] }
+    fromEntries<
+      K extends PropertyKey,
+      I extends Iterable<readonly [K, any]>,
+      T extends IterableType<I> = IterableType<I>
+    >(entries: I): { [Key in T[0]]: T[1] }
 
 
 
@@ -112,7 +134,7 @@ declare global {
      * @param target Object that contains the property on itself or in its prototype chain.
      * @param propertyKey Name of the property.
      */
-    function has<T extends AnyObject, K extends keyof globalThis.Object>(target: T, propertyKey: K): target is T
+    function has<T extends AnyObject>(target: T, propertyKey: keyof globalThis.Object): target is T
 
     /**
      * Equivalent to `propertyKey in target`.

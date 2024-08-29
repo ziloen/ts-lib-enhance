@@ -1,11 +1,10 @@
-/* eslint-disable unicorn/prefer-query-selector */
 import type { Equal, Expect } from './utils'
 
 
 
 // Test Object.hasOwn()
 {
-  const objUnion = { a: 12 } as { a: number } | { b: number }
+  const objUnion = { a: 12 } as ({ a: number } | { b: number })
 
   // key on Object.prototype
   if (Object.hasOwn(objUnion, 'toString')) {
@@ -23,7 +22,7 @@ import type { Equal, Expect } from './utils'
 
   // if not key, don't narrow
   if (Object.hasOwn(objUnion, 'c')) {
-    type Test = Expect<Equal<typeof objUnion, { a: number } | { b: number }>>
+    type Test = Expect<Equal<typeof objUnion, ({ a: number } | { b: number }) & { c: unknown }>>
   } else {
     type Test = Expect<Equal<typeof objUnion, { a: number } | { b: number }>>
   }
