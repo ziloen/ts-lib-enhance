@@ -1,6 +1,3 @@
-/** @internal */
-type _ = any
-
 /**
  * @internal
  * Extract from T those types that has K keys
@@ -86,6 +83,7 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T ext
 /** @internal */
 export type Expect<T extends true> = T
 
+/** @internal */
 export type IfAnyOrUnknown<T, TypeIf = true, TypeElse = false> = (
   unknown extends T ? TypeIf : TypeElse
 )
