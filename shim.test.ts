@@ -252,6 +252,14 @@ import type { Equal, Expect } from './utils'
     type TestCase = Expect<Equal<typeof testConst, never>>
   }
 
+  const testReadonlyArrayUnion = [] as ((ReadonlyArray<{ a: number }>) | { a: number })
+  if (Array.isArray(testReadonlyArrayUnion)) {
+    // narrow to ReadonlyArray<{ a: number }> instead of any[]
+    type TestCase = Expect<Equal<typeof testReadonlyArrayUnion, ReadonlyArray<{ a: number }>>>
+  } else {
+    type TestCase = Expect<Equal<typeof testReadonlyArrayUnion, { a: number }>>
+  }
+
   const testArr = [1, 2, 3]
   if (Array.isArray(testArr)) {
     type TestCase = Expect<Equal<typeof testArr, number[]>>
