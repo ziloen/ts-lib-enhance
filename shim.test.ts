@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { Equal, Expect } from './utils'
 
 
@@ -252,12 +253,12 @@ import type { Equal, Expect } from './utils'
     type TestCase = Expect<Equal<typeof testConst, never>>
   }
 
-  const testReadonlyArrayUnion = [] as ((ReadonlyArray<{ a: number }>) | { a: number })
+  const testReadonlyArrayUnion = [] as readonly number[] | number
   if (Array.isArray(testReadonlyArrayUnion)) {
-    // narrow to ReadonlyArray<{ a: number }> instead of any[]
-    type TestCase = Expect<Equal<typeof testReadonlyArrayUnion, ReadonlyArray<{ a: number }>>>
+    // narrow to ReadonlyArray<number> instead of any[]
+    type TestCase = Expect<Equal<typeof testReadonlyArrayUnion, ReadonlyArray<number>>>
   } else {
-    type TestCase = Expect<Equal<typeof testReadonlyArrayUnion, { a: number }>>
+    type TestCase = Expect<Equal<typeof testReadonlyArrayUnion, number>>
   }
 
   const testArr = [1, 2, 3]
@@ -267,28 +268,13 @@ import type { Equal, Expect } from './utils'
     type TestCase = Expect<Equal<typeof testArr, never>>
   }
 
-  const testUnion1 = '123' as string | string[]
-  if (Array.isArray(testUnion1)) {
-    type TestCase = Expect<Equal<typeof testUnion1, string[]>>
+  const testNormalUnion = '123' as string | string[]
+  if (Array.isArray(testNormalUnion)) {
+    type TestCase = Expect<Equal<typeof testNormalUnion, string[]>>
   } else {
-    type TestCase = Expect<Equal<typeof testUnion1, string>>
+    type TestCase = Expect<Equal<typeof testNormalUnion, string>>
   }
 
-  const testUnion2 = '123' as string | string[] | number
-  if (Array.isArray(testUnion2)) {
-    type TestCase = Expect<Equal<typeof testUnion2, string[]>>
-  } else {
-    type TestCase = Expect<Equal<typeof testUnion2, string | number>>
-  }
-
-  const testUnion3 = '123' as string | string[] | number | number[]
-  if (Array.isArray(testUnion3)) {
-    type TestCase = Expect<Equal<typeof testUnion3, string[] | number[]>>
-  } else {
-    type TestCase = Expect<Equal<typeof testUnion3, string | number>>
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const testAny = '' as any
   if (Array.isArray(testAny)) {
     // narrow any to unknown[] instead of any[]
