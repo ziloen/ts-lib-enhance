@@ -298,4 +298,20 @@ import type { Equal, Expect } from './utils'
   } else {
     type TestCase = Expect<Equal<typeof testNotArr, string | number>>
   }
+
+
+  class TestSubClass extends Array { }
+  const testSubClass = new TestSubClass()
+  if (Array.isArray(testSubClass)) {
+    type TestCase = Expect<Equal<typeof testSubClass, TestSubClass>>
+  } else {
+    type TestCase = Expect<Equal<typeof testSubClass, never>>
+  }
+
+  const testNodeList = [] as unknown as NodeListOf<ChildNode>
+  if (Array.isArray(testNodeList)) {
+    type TestCase = Expect<Equal<typeof testNodeList, never>>
+  } else {
+    type TestCase = Expect<Equal<typeof testNodeList, NodeListOf<ChildNode>>>
+  }
 }
