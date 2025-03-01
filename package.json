@@ -1,6 +1,6 @@
 {
   "name": "ts-lib-enhance",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "type": "module",
   "description": "Enhance typescript default lib.*.d.ts",
   "keywords": [
