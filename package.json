@@ -15,13 +15,11 @@
   "files": [
     "InputEventInputType.d.ts",
     "KeyboardEventKey.d.ts",
-    "highlight.d.ts",
     "lib.dom.d.ts",
     "lib.es.d.ts",
     "shim.d.ts",
     "typed-query-selector.d.ts",
-    "utils.d.ts",
-    "view-transition.d.ts"
+    "utils.d.ts"
   ],
   "scripts": {
     "dev": "tsc --noEmit --watch",
@@ -30,13 +28,13 @@
     "test": "tsc --noEmit"
   },
   "dependencies": {
-    "bumpp": "^9.8.1",
-    "type-fest": "^4.28.0",
+    "bumpp": "^10.0.3",
+    "type-fest": "^4.36.0",
     "typed-query-selector": "^2.12.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.8.2"
   },
   "devDependencies": {
-    "@ziloen/eslint-config": "^0.1.54",
-    "eslint": "^9.15.0"
+    "@ziloen/eslint-config": "^0.1.59",
+    "eslint": "^9.21.0"
   }
 }
