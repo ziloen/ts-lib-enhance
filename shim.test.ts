@@ -202,6 +202,14 @@ import type { Equal, Expect } from './utils'
     type TestCase = Expect<Equal<string, typeof c>>
   }
 
+  const astr = [] as string[]
+  const bstr = '' as string
+
+  if (astr.includes(bstr)) {
+    type TestCase = Expect<Equal<(typeof astr)[number], typeof bstr>>
+  } else {
+    type TestCase = Expect<Equal<string, typeof bstr>>
+  }
 }
 
 

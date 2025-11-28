@@ -1,4 +1,4 @@
-import type { KeysOfUnion, Split } from 'type-fest'
+import type { KeysOfUnion, Split, IsLiteral } from 'type-fest'
 import type {
   AnyObject,
   ExtractAndRequiredByKey,
@@ -168,8 +168,9 @@ declare global {
      * Determines whether an array includes a certain element, returning true or false as appropriate.
      * @param searchElement The element to search for.
      */
-    includes(searchElement: T): searchElement is T
-    includes(searchElement: any): searchElement is T
+    // FIXME: if (arr.includes(str)) { str is string } else { str is never }
+    // includes(searchElement: T): searchElement is T
+    // includes(searchElement: any): searchElement is T
 
     /**
      * Combines two or more arrays.
