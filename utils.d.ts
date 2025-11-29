@@ -77,16 +77,18 @@ export type UnionToTuple<U, L = UnionLast<U>> = [U] extends [never] ? [] : [L, .
 
 // type-challenges utils 
 /** @internal */
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
 
 /** @internal */
 export type Expect<T extends true> = T
 
 /** @internal */
-export type IfAnyOrUnknown<T, TypeIf = true, TypeElse = false> = (
-  unknown extends T ? TypeIf : TypeElse
-)
+export type IfAnyOrUnknown<
+  T,
+  TypeIf = true,
+  TypeElse = false
+> = unknown extends T ? TypeIf : TypeElse
+
 
 // is is possible a shortcut for Expect<Equal<X, Y>> ? ExpectEq<X, Y>
 // export type ExpectEq<X, Y, N extends boolean = Equal<X, Y>, R extends true = N extends true ? true : true> = N
