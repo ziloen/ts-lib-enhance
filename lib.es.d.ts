@@ -186,6 +186,21 @@ declare global {
     // concat<K>(...items: (K | K[])[]): (T | K)[]
   }
 
+  interface ReadonlyArray<T> {
+    /**
+     * Determines whether an array includes a certain element, returning true or false as appropriate.
+     * @param searchElement The element to search for.
+     */
+    // For literal element types: narrow the searchElement via type predicate
+    includes(searchElement: IsLiteral<T> extends true ? any : never): searchElement is IsLiteral<T> extends true ? T : never
+    /**
+     * Determines whether an array includes a certain element, returning true or false as appropriate.
+     * @param searchElement The element to search for.
+     */
+    // For non-literal element types: no narrowing, just boolean
+    includes(searchElement: any): boolean
+  }
+
 
 
   interface ArrayConstructor {

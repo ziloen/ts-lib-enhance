@@ -194,6 +194,7 @@ import type { Equal, Expect } from './utils'
 {
   const a: ('a' | 'b')[] = []
   const c = '' as string
+  const d = '' as 'a' | 'b' | 'c'
 
   if (a.includes(c)) {
     type TestCase = Expect<Equal<(typeof a)[number], typeof c>>
@@ -201,7 +202,42 @@ import type { Equal, Expect } from './utils'
     type TestCase = Expect<Equal<string, typeof c>>
   }
 
+  if (a.includes(d)) {
+    type TestCase = Expect<Equal<typeof a[number], typeof d>>
+  } else {
+    type TestCase = Expect<Equal<Exclude<typeof d, typeof a>, typeof d>>
+  }
+
   const astr = [] as string[]
+  const bstr = '' as string
+
+  if (astr.includes(bstr)) {
+    type TestCase = Expect<Equal<(typeof astr)[number], typeof bstr>>
+  } else {
+    type TestCase = Expect<Equal<string, typeof bstr>>
+  }
+}
+
+
+{
+  // Test `ReadonlyArray.prototype.includes`
+  const a: readonly ('a' | 'b')[] = []
+  const c = '' as string
+  const d = '' as 'a' | 'b' | 'c'
+
+  if (a.includes(c)) {
+    type TestCase = Expect<Equal<(typeof a)[number], typeof c>>
+  } else {
+    type TestCase = Expect<Equal<string, typeof c>>
+  }
+
+  if (a.includes(d)) {
+    type TestCase = Expect<Equal<typeof a[number], typeof d>>
+  } else {
+    type TestCase = Expect<Equal<Exclude<typeof d, typeof a>, typeof d>>
+  }
+
+  const astr = [] as readonly string[]
   const bstr = '' as string
 
   if (astr.includes(bstr)) {
