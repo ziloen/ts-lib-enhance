@@ -1,4 +1,4 @@
-import type { KeysOfUnion, Split, IsLiteral } from 'type-fest'
+import type { IsLiteral, KeysOfUnion, Split } from 'type-fest'
 import type {
   AnyObject,
   ExtractAndRequiredByKey,
@@ -168,10 +168,14 @@ declare global {
      * Determines whether an array includes a certain element, returning true or false as appropriate.
      * @param searchElement The element to search for.
      */
-    // FIXME: if (arr.includes(str)) { str is string } else { str is never }
-    // includes(searchElement: T): searchElement is T
-    // includes(searchElement: any): searchElement is T
-
+    // For literal element types: narrow the searchElement via type predicate
+    includes(searchElement: IsLiteral<T> extends true ? any : never): searchElement is IsLiteral<T> extends true ? T : never
+    /**
+     * Determines whether an array includes a certain element, returning true or false as appropriate.
+     * @param searchElement The element to search for.
+     */
+    // For non-literal element types: no narrowing, just boolean
+    includes(searchElement: any): boolean
     /**
      * Combines two or more arrays.
      * This method returns a new array without modifying any existing arrays.
